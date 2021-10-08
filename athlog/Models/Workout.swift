@@ -9,7 +9,11 @@ import Foundation
 
 struct Workout {
 	// data: list of exercises inside a current workout session; this is what goes into the current workout
-	var exerciseList: Array<Exercise>
+	var exerciseList: [Workout.Exercise] = [
+		Workout.Exercise(name: "Bench", weight: 0.0, reps: 0, sets: []),
+		Workout.Exercise(name: "Squat", weight: 0.0, reps: 0, sets: []),
+		Workout.Exercise(name: "Deadlift", weight: 0.0, reps: 0, sets: [])
+	]
 	
 	init(startWorkout: Bool) {
 		// starts a workout -- initializes the ViewModel var model
@@ -21,7 +25,16 @@ struct Workout {
 		exerciseList.append(Exercise(name: exerciseName, weight: exerciseWeight, reps: exerciseReps, sets: exerciseSets))
 	}
 	
-	struct Exercise {
+	var lifts = [
+		Workout.Exercise(
+			name: "Back Squat",
+			weight: 0.0,
+			reps: 0
+		)
+	]
+	
+	struct Exercise: Identifiable, Hashable {
+		let id = UUID()
 		var name: String
 		var weight: Double
 		var reps: Int
@@ -43,16 +56,25 @@ struct Workout {
 }
 
 
-//extension Workout.Exercise {
-//	static var exercises = [
-//		Workout.Exercise(
-//			name: "Squat"
-//		),
-//		Workout.Exercise(
-//			name: "Bench Press"
-//		),
-//		Workout.Exercise(
-//			name: "Deadlift"
-//		)
-//	]
-//}
+
+
+
+extension Workout {
+	static var exerciseLibrary = [
+		Workout.Exercise(
+			name: "Back Squat",
+			weight: 0.0,
+			reps: 0
+		),
+		Workout.Exercise(
+			name: "Bench Press",
+			weight: 0.0,
+			reps: 0
+		),
+		Workout.Exercise(
+			name: "Deadlift",
+			weight: 0.0,
+			reps: 0
+		)
+	]
+}

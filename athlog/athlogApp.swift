@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct athlogApp: App {
+		let viewModel = WorkoutViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+					ContentView(viewModel: viewModel)
         }
     }
 }

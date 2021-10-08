@@ -9,14 +9,14 @@ import SwiftUI
 import Combine
 
 struct workoutView: View {
+
 		var body: some View {
 			List {
-				movementView()
+				exerciseSectionView()
 				addExerciseView()
 			}
 		}
 }
-
 
 
 struct addSetRowView: View {
@@ -32,14 +32,22 @@ struct addSetRowView: View {
 }
 
 struct addExerciseView: View {
-	var Session = WorkoutSession()
 	var body: some View {
 		VStack {
 			Button(action: {
-				Session.addExercise(name: "Squat", weight: 225.0, reps: 5, sets: [1])
 			}) {
 					Text("Add Exercise")
 			}
+		}
+	}
+}
+
+struct exerciseSectionView: View {
+	@State static var workout = Workout(startWorkout: true)
+	var exercises = workout.lifts.count
+	var body: some View {
+		ForEach(0..<exercises) {index in
+				movementView()
 		}
 	}
 }
@@ -100,7 +108,7 @@ struct exerciseColumnView: View {
 struct weightColumnView: View {
 	var body: some View {
 		VStack {
-			inputView()
+			weightInputView()
 		}
 	}
 }
@@ -108,8 +116,7 @@ struct weightColumnView: View {
 struct repsColumnView: View {
 	var body: some View {
 		VStack {
-			inputView()
-
+			repsInputView()
 		}
 	}
 }
@@ -134,18 +141,36 @@ struct completeColumnView: View {
 	}
 }
 
-struct inputView: View {
-		@State private var val = ""
+
+struct weightInputView: View {
+		@State private var weight = ""
 
 		var body: some View {
-			TextField("", text: $val)
+			TextField("", text: $weight)
 				.multilineTextAlignment(.center)
 				.textFieldStyle(.roundedBorder)
 				.keyboardType(.decimalPad)
-						.onReceive(Just(val)) { newValue in
+						.onReceive(Just(weight)) { newValue in
 								let filtered = newValue.filter { "0123456789.".contains($0) }
 								if filtered != newValue {
-										self.val = filtered
+										self.weight = filtered
+								}
+				}
+		}
+}
+
+struct repsInputView: View {
+		@State private var reps = ""
+
+		var body: some View {
+			TextField("", text: $reps)
+				.multilineTextAlignment(.center)
+				.textFieldStyle(.roundedBorder)
+				.keyboardType(.decimalPad)
+						.onReceive(Just(reps)) { newValue in
+								let filtered = newValue.filter { "0123456789.".contains($0) }
+								if filtered != newValue {
+										self.reps = filtered
 								}
 				}
 		}
@@ -166,7 +191,7 @@ struct CheckBoxView: View {
 
 struct workoutView_Previews: PreviewProvider {
 		static var previews: some View {
-				workoutView()
+			workoutView()
 		}
 }
 

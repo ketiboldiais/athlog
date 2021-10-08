@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+	var viewModel: WorkoutViewModel // hook up ViewModel
     var body: some View {
 			TabView {
 				workoutView()
@@ -24,15 +25,12 @@ struct ContentView: View {
 					.fontWeight(.bold)}
 			}
 			.padding()
-
-//			.tabViewStyle(PageTabViewStyle())
-//			.indexViewStyle(
-//				PageIndexViewStyle(backgroundDisplayMode: .always))
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+			let viewModel = WorkoutViewModel()
+			ContentView(viewModel: viewModel)
     }
 }
