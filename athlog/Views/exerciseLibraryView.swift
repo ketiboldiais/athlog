@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct historyView: View {
+struct exerciseLibraryView: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
-struct historyView_Previews: PreviewProvider {
+struct exerciseLibraryView_Previews: PreviewProvider {
     static var previews: some View {
-        historyView()
+        exerciseLibraryView()
     }
 }

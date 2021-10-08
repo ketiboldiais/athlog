@@ -14,11 +14,11 @@ struct ContentView: View {
 					.tabItem { Text("Workout")
 					.font(.largeTitle)
 					.fontWeight(.bold)}
-				historyView()
+				progressView()
 					.tabItem { Text("History")
 					.font(.largeTitle)
 					.fontWeight(.bold)}
-				exercisesView()
+				exerciseLibraryView()
 					.tabItem { Text("Exercises")
 					.font(.largeTitle)
 					.fontWeight(.bold)}
